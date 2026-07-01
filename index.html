@@ -210,8 +210,105 @@
             font-size: 13px;
             color: #5b7d8e;
             line-height: 1.6;
-            margin-bottom: 18px;
+            margin-bottom: 12px;
             padding: 0 4px;
+        }
+
+        /* События */
+        .events-section {
+            background: white;
+            border-radius: 18px;
+            padding: 18px 20px;
+            margin-bottom: 14px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+        }
+
+        .events-section .events-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1e3b4c;
+            margin-bottom: 10px;
+        }
+
+        .events-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 10px;
+        }
+
+        .events-list li {
+            font-size: 13px;
+            color: #3d5a66;
+            padding: 6px 0;
+            border-bottom: 1px solid #f0f4f6;
+            line-height: 1.5;
+        }
+
+        .events-list li:last-child {
+            border-bottom: none;
+        }
+
+        .events-empty {
+            font-size: 13px;
+            color: #8aa6b2;
+            font-style: italic;
+        }
+
+        .add-event-btn {
+            display: inline-block;
+            background: none;
+            border: 1px dashed #a0c4d4;
+            color: #5b7d8e;
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .add-event-btn:active {
+            background: #f0f6f9;
+        }
+
+        .add-event-form {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .add-event-form.active {
+            display: block;
+        }
+
+        .add-event-form input {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid #dce8ed;
+            font-size: 14px;
+            font-family: inherit;
+            margin-bottom: 8px;
+            background: #fafcfd;
+        }
+
+        .add-event-form .emoji-input {
+            width: 60px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .add-event-form .save-event-btn {
+            background: #6fcf97;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1a3b2a;
+            cursor: pointer;
+        }
+
+        .add-event-form .save-event-btn:active {
+            background: #5cba82;
         }
 
         /* Добавить в iPhone — внизу */
@@ -449,6 +546,28 @@
             margin-bottom: 10px;
         }
 
+        .final-events-summary {
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px solid #e8f0f3;
+            text-align: left;
+        }
+
+        .final-events-summary .fe-title {
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .final-events-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .final-events-summary ul li {
+            padding: 4px 0;
+            font-size: 13px;
+        }
+
         .footer-note {
             text-align: center;
             font-size: 13px;
@@ -527,6 +646,18 @@
             ещё больше стать собой.
         </p>
 
+        <!-- События -->
+        <div class="events-section" id="eventsSection">
+            <div class="events-title">✨ Твой июль в моментах</div>
+            <ul class="events-list" id="eventsList"></ul>
+            <button class="add-event-btn" onclick="toggleEventForm()">+ событие</button>
+            <div class="add-event-form" id="eventForm">
+                <input type="text" class="emoji-input" id="eventEmoji" placeholder="🌟" maxlength="4">
+                <input type="text" id="eventText" placeholder="Что случилось?" maxlength="60">
+                <button class="save-event-btn" onclick="saveEvent()">Сохранить</button>
+            </div>
+        </div>
+
         <!-- Финальное сообщение (скрыто по умолчанию) -->
         <div class="final-message" id="finalMessage" style="display:none;">
             <div class="final-emoji">🌿</div>
@@ -536,7 +667,8 @@
             <p>Иногда через один вопрос. Иногда через маленькое действие. Иногда через честный ответ.</p>
             <p>Именно так постепенно появляется жизнь, в которой становится всё больше настоящего тебя.</p>
             <p>Спасибо, что прожил этот июль вместе с собой.</p>
-            <p>🤍</p>
+            <div class="final-events-summary" id="finalEventsSummary"></div>
+            <p style="margin-top:12px;">🤍</p>
         </div>
 
         <!-- Кнопка и инструкция внизу -->
@@ -577,7 +709,7 @@
 
     <script>
         const dayData = {
-            1:{emoji:"",title:"Международный день татуировки",body:"Если бы на твоей коже могла навсегда остаться всего одна поддерживающая фраза, какой бы она была?\n\nНе обязательно делать татуировку. Просто напиши эту фразу ручкой на руке или в заметках телефона и проживи с ней сегодняшний день.",action:"Маленькое действие: пусть эта фраза станет твоим напоминанием каждый раз, когда захочется снова стать «удобной»."},
+            1:{emoji:"💉",title:"Международный день татуировки",body:"Если бы на твоей коже могла навсегда остаться всего одна поддерживающая фраза, какой бы она была?\n\nНе обязательно делать татуировку. Просто напиши эту фразу ручкой на руке или в заметках телефона и проживи с ней сегодняшний день.",action:"Маленькое действие: пусть эта фраза станет твоим напоминанием каждый раз, когда захочется снова стать «удобной»."},
             2:{emoji:"🛸",title:"Всемирный день НЛО",body:"Бывало ли у тебя ощущение, что ты как будто немного не отсюда?\n\nКакие твои взгляды, привычки или желания не совпадают с тем, что принято вокруг? В чём ты «слишком странная» для других?",action:"Маленькое действие: сегодня сделай одну вещь, которая поддерживает именно твою природу, а не ожидания окружающих."},
             3:{emoji:"🫂",title:"День тайной дружбы",body:"Есть ли часть тебя, которую ты чаще всего прячешь?\n\nМожет быть, злость. Может быть, дерзость. Может быть, желание быть слабой.\n\nКакой своей стороне давно пора сказать: «Я больше не буду делать вид, что тебя нет»?",action:"Маленькое действие: разреши этой части проявиться хотя бы чуть-чуть сегодня."},
             4:{emoji:"⏳",title:"День капсулы времени",body:"Представь, что сегодня ты отправляешь письмо себе через месяц.\n\nКакой человек откроет его в августе? Что ты хочешь успеть разрешить себе за этот месяц?",action:"Маленькое действие: запиши одно главное внутреннее разрешение и не перечитывай его до конца июля."},
@@ -668,6 +800,45 @@
             return 'july-daily-phrase-' + d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate();
         }
 
+        function loadEvents() {
+            return JSON.parse(localStorage.getItem('july-events') || '[]');
+        }
+
+        function saveEvents(events) {
+            localStorage.setItem('july-events', JSON.stringify(events));
+        }
+
+        function renderEvents() {
+            const list = document.getElementById('eventsList');
+            const events = loadEvents();
+            if (events.length === 0) {
+                list.innerHTML = '<li class="events-empty">Пока нет событий. Добавь первое!</li>';
+            } else {
+                list.innerHTML = events.map(e => `<li>${e.emoji} ${e.text}</li>`).join('');
+            }
+        }
+
+        function toggleEventForm() {
+            const form = document.getElementById('eventForm');
+            form.classList.toggle('active');
+            if (form.classList.contains('active')) {
+                document.getElementById('eventEmoji').focus();
+            }
+        }
+
+        function saveEvent() {
+            const emoji = document.getElementById('eventEmoji').value.trim() || '✨';
+            const text = document.getElementById('eventText').value.trim();
+            if (!text) return;
+            const events = loadEvents();
+            events.push({ emoji, text });
+            saveEvents(events);
+            document.getElementById('eventEmoji').value = '';
+            document.getElementById('eventText').value = '';
+            document.getElementById('eventForm').classList.remove('active');
+            renderEvents();
+        }
+
         function renderGrid() {
             const grid = document.getElementById('daysGrid');
             grid.innerHTML = '';
@@ -717,6 +888,7 @@
             updateProgress();
             updateDailyPhrase();
             updateFinalMessage();
+            renderEvents();
         }
 
         function updateProgress() {
@@ -755,10 +927,26 @@
             const finalEl = document.getElementById('finalMessage');
             const footerEl = document.getElementById('footerNote');
             const bottomEl = document.getElementById('bottomAction');
+            const eventsEl = document.getElementById('eventsSection');
             if (isAfterJuly || (isJuly2026 && currentDay > 31)) {
                 finalEl.style.display = 'block';
                 footerEl.style.display = 'none';
                 bottomEl.style.display = 'none';
+                eventsEl.style.display = 'none';
+
+                const events = loadEvents();
+                const summary = document.getElementById('finalEventsSummary');
+                if (events.length > 0) {
+                    summary.innerHTML = `
+                        <div class="fe-title">✨ Твой июль в моментах</div>
+                        <ul>${events.map(e => `<li>${e.emoji} ${e.text}</li>`).join('')}</ul>
+                        <p style="margin-top:8px;">${events.length} ${events.length === 1 ? 'событие' : (events.length < 5 ? 'события' : 'событий')}, ${events.length === 1 ? 'которое сделало' : 'которые сделали'} этот месяц твоим.</p>
+                    `;
+                } else {
+                    summary.innerHTML = `
+                        <p>Ты прожила этот месяц осознанно.<br>Этого уже достаточно.</p>
+                    `;
+                }
             }
         }
 
