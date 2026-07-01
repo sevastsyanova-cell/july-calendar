@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Июль — выбери себя</title>
+    <title>Июль — выбери себя ☀️</title>
     <style>
         * {
             margin: 0;
@@ -15,83 +15,778 @@
             background: #e6f4fa;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            padding: 20px 16px 40px;
+            color: #1e3b4c;
         }
 
-        .card {
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        /* Шапка */
+        .header-card {
             background: white;
-            border-radius: 28px;
-            padding: 40px 28px 36px;
-            max-width: 400px;
-            width: 100%;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+            border-radius: 24px;
+            padding: 32px 24px 24px;
             text-align: center;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+            margin-bottom: 16px;
         }
 
-        .emoji-top {
+        .header-card .emoji-top {
             font-size: 44px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
-        h1 {
-            font-size: 22px;
+        .header-card h1 {
+            font-size: 20px;
             font-weight: 600;
             color: #1e3b4c;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             line-height: 1.4;
         }
 
-        .subtitle {
-            font-size: 15px;
+        .header-card .subtitle {
+            font-size: 14px;
             color: #5b7d8e;
-            margin-bottom: 30px;
+            margin-bottom: 18px;
             line-height: 1.5;
         }
 
-        .button {
+        .add-calendar-btn {
             display: block;
             width: 100%;
             background: #2c7da0;
             color: white;
             text-decoration: none;
-            padding: 18px 20px;
-            border-radius: 18px;
-            font-size: 18px;
+            padding: 16px 18px;
+            border-radius: 16px;
+            font-size: 16px;
             font-weight: 500;
-            letter-spacing: 0.2px;
             transition: background 0.2s ease;
-            margin-bottom: 20px;
+            margin-bottom: 6px;
         }
 
-        .button:active {
+        .add-calendar-btn:active {
             background: #1e5f7a;
         }
 
-        .hint {
+        .add-calendar-hint {
+            font-size: 12px;
+            color: #8aa6b2;
+            margin-bottom: 16px;
+        }
+
+        /* Инструкция */
+        .instructions {
+            text-align: left;
+            background: #f6fafc;
+            border-radius: 16px;
+            padding: 16px 18px;
+            font-size: 13px;
+            color: #3d5a66;
+            line-height: 1.6;
+        }
+
+        .instructions summary {
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 8px;
+            color: #1e3b4c;
+        }
+
+        .instructions ol {
+            padding-left: 18px;
+        }
+
+        .instructions ol li {
+            margin-bottom: 6px;
+        }
+
+        /* Текст о календаре */
+        .about-text {
+            background: white;
+            border-radius: 18px;
+            padding: 18px 20px;
+            margin-bottom: 12px;
+            font-size: 13px;
+            color: #3d5a66;
+            line-height: 1.7;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+        }
+
+        .about-text p {
+            margin-bottom: 8px;
+        }
+
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Фраза дня */
+        .daily-phrase {
+            text-align: center;
+            font-size: 13px;
+            color: #5b7d8e;
+            margin-bottom: 12px;
+            font-style: italic;
+            padding: 0 4px;
+            line-height: 1.5;
+        }
+
+        /* Прогресс */
+        .progress-box {
+            background: white;
+            border-radius: 18px;
+            padding: 18px 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+        }
+
+        .progress-bar {
+            height: 14px;
+            background: #e0edf3;
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #6fcf97;
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 14px;
+        }
+
+        .progress-text {
+            font-size: 13px;
+            color: #5b7d8e;
+            font-weight: 500;
+        }
+
+        /* Дни недели */
+        .day-names {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 6px;
+            margin-bottom: 8px;
+            padding: 0 2px;
+        }
+
+        .day-name {
+            text-align: center;
+            font-size: 11px;
+            font-weight: 500;
+            color: #7a9baa;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        /* Сетка */
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .day-cell {
+            aspect-ratio: 1;
+            background: white;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 500;
+            color: #2c4b5a;
+            cursor: pointer;
+            transition: transform 0.12s ease, box-shadow 0.12s ease;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        .day-cell:active {
+            transform: scale(0.93);
+        }
+
+        .day-cell.past {
+            opacity: 0.35;
+            background: #f0f5f7;
+            cursor: pointer;
+        }
+
+        .day-cell.today {
+            background: #d4ecf6;
+            box-shadow: 0 0 0 3px #a0d2e8;
+            font-weight: 600;
+            color: #1a3b4a;
+        }
+
+        .day-cell.future {
+            opacity: 0.45;
+            background: #f5f9fb;
+            cursor: pointer;
+        }
+
+        .day-cell.done {
+            background: #c8e6d0;
+            color: #2d5a3a;
+            opacity: 1 !important;
+            cursor: pointer;
+        }
+
+        .day-cell .lock {
+            position: absolute;
+            bottom: 5px;
+            font-size: 11px;
+            opacity: 0.6;
+        }
+
+        .day-cell .check-mark {
+            position: absolute;
+            top: 5px;
+            right: 6px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .day-cell .star-mark {
+            position: absolute;
+            top: 5px;
+            right: 6px;
+            font-size: 11px;
+        }
+
+        /* Модальное окно */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(30,50,60,0.5);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-card {
+            background: white;
+            border-radius: 24px;
+            padding: 28px 22px 22px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            position: relative;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .modal-card .m-emoji {
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+
+        .modal-card .m-date {
+            font-size: 13px;
+            color: #7a9baa;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-card .m-title {
+            font-size: 19px;
+            font-weight: 600;
+            color: #1e3b4c;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .modal-card .m-body {
+            font-size: 14px;
+            color: #3d5a66;
+            line-height: 1.7;
+            white-space: pre-wrap;
+            margin-bottom: 10px;
+        }
+
+        .modal-card .m-action-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #2c4b5a;
+            margin-bottom: 4px;
+            margin-top: 12px;
+        }
+
+        .modal-card .m-action {
+            background: #f0f6f9;
+            border-radius: 14px;
+            padding: 14px 16px;
+            font-size: 14px;
+            color: #1e3b4c;
+            line-height: 1.5;
+            margin-bottom: 12px;
+            border-left: 3px solid #a0d2e8;
+        }
+
+        .modal-card .m-locked-message {
+            text-align: center;
+            font-size: 14px;
+            color: #7a9baa;
+            line-height: 1.6;
+            padding: 10px 0;
+        }
+
+        .modal-card textarea {
+            width: 100%;
+            min-height: 80px;
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            border: 1px solid #dce8ed;
+            font-size: 14px;
+            font-family: inherit;
+            resize: vertical;
+            background: #fafcfd;
+        }
+
+        .modal-card label {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #2c4b5a;
+            margin-bottom: 14px;
+            cursor: pointer;
+        }
+
+        .modal-card label input {
+            margin-right: 8px;
+            transform: scale(1.3);
+            accent-color: #6fcf97;
+        }
+
+        .modal-card .m-save {
+            display: block;
+            width: 100%;
+            background: #6fcf97;
+            border: none;
+            padding: 14px;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #1a3b2a;
+            cursor: pointer;
+            margin-bottom: 8px;
+        }
+
+        .modal-card .m-save:active {
+            background: #5cba82;
+        }
+
+        .modal-card .m-close {
+            display: block;
+            width: 100%;
+            background: #e0edf3;
+            border: none;
+            padding: 12px;
+            border-radius: 14px;
+            font-size: 14px;
+            color: #2c4b5a;
+            cursor: pointer;
+        }
+
+        .modal-card .m-close:active {
+            background: #cfdfe7;
+        }
+
+        /* Финальное сообщение */
+        .final-message {
+            background: white;
+            border-radius: 18px;
+            padding: 20px 22px;
+            margin-top: 16px;
+            text-align: center;
+            font-size: 14px;
+            color: #3d5a66;
+            line-height: 1.7;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+        }
+
+        .final-message .final-emoji {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        /* Футер */
+        .footer-note {
+            text-align: center;
             font-size: 13px;
             color: #8aa6b2;
-            line-height: 1.5;
+            line-height: 1.6;
+            margin-top: 12px;
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <div class="emoji-top">☀️</div>
-        <h1>Как стать чуть больше собой<br>за 31 день июля</h1>
-        <p class="subtitle">Прочувствовать этот месяц,<br>а не упустить</p>
+    <div class="container">
+        <!-- Шапка -->
+        <div class="header-card">
+            <div class="emoji-top">☀️</div>
+            <h1>Как стать чуть больше собой<br>за 31 день июля</h1>
+            <p class="subtitle">Июль всё равно пройдёт. Вопрос только в том, сколько в этом месяце будет настоящего тебя.</p>
+            <a class="add-calendar-btn" href="webcal://raw.githubusercontent.com/sevastsyanova-cell/july-calendar/main/july-calendar.ics">
+                ✦ Добавить календарь в iPhone
+            </a>
+            <p class="add-calendar-hint">Нажмите «Подписаться», затем «Добавить»</p>
 
-        <a class="button" href="webcal://raw.githubusercontent.com/sevastsyanova-cell/july-calendar/main/july-calendar.ics">
-            ✦ Добавить календарь в iPhone
-        </a>
+            <details class="instructions">
+                <summary>📲 Как установить и пользоваться</summary>
+                <ol>
+                    <li>Нажмите на кнопку выше</li>
+                    <li>Откроется окно «Подписаться на календарь»</li>
+                    <li>Нажмите «Подписаться»</li>
+                    <li>Календарь появится в приложении 📅 Календарь</li>
+                    <li>Каждый день открывайте календарь, читайте вопрос и делайте одно маленькое действие</li>
+                </ol>
+            </details>
+        </div>
 
-        <p class="hint">
-            После нажатия появится окно<br>«Подписаться на календарь»<br>Нажмите «Добавить»
+        <!-- О календаре -->
+        <div class="about-text">
+            <p>Лето проходит независимо от того, замечаем мы его или нет.</p>
+            <p>Но каждый день — это возможность остановиться на несколько минут и спросить себя:<br>«А чего сейчас хочу именно я?»</p>
+            <p>Этот календарь не про продуктивность.<br>Не про идеальные привычки.<br>Не про то, чтобы стать лучшей версией себя.</p>
+            <p>Он про другое.<br>Каждый день июля связан с настоящим праздником.<br>Тебя ждут один вопрос.<br>Одно небольшое действие.<br>И ещё один маленький шаг навстречу себе.</p>
+        </div>
+
+        <!-- Фраза дня -->
+        <div class="daily-phrase" id="dailyPhrase"></div>
+
+        <!-- Прогресс -->
+        <div class="progress-box">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText"></div>
+        </div>
+
+        <!-- Дни недели -->
+        <div class="day-names">
+            <div class="day-name">пн</div><div class="day-name">вт</div><div class="day-name">ср</div>
+            <div class="day-name">чт</div><div class="day-name">пт</div><div class="day-name">сб</div>
+            <div class="day-name">вс</div>
+        </div>
+
+        <!-- Сетка -->
+        <div class="days-grid" id="daysGrid"></div>
+
+        <!-- Финальное сообщение (скрыто по умолчанию) -->
+        <div class="final-message" id="finalMessage" style="display:none;">
+            <div class="final-emoji">🌿</div>
+            <p>Июль завершён.</p>
+            <p>Если ты сейчас читаешь эти строки, значит, этот месяц был прожит внимательнее, чем многие предыдущие.</p>
+            <p>Не потому что всё получилось идеально.<br>А потому что ты снова и снова возвращался к себе.</p>
+            <p>Иногда через один вопрос.<br>Иногда через маленькое действие.<br>Иногда через честный ответ.</p>
+            <p>Именно так постепенно появляется жизнь, в которой становится всё больше настоящего тебя.</p>
+            <p>Спасибо, что прожил этот июль вместе с собой.</p>
+            <p>🤍</p>
+        </div>
+
+        <p class="footer-note" id="footerNote">
+            🌿 Это не курс. Не задания.<br>
+            Просто один вопрос в день,<br>который возвращает тебя к себе.
         </p>
     </div>
-</body>
-</html>
+
+    <!-- Модальное окно -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-card" id="modalCard"></div>
+    </div>
+
+    <script>
+        const dayData = {
+            1:{emoji:"💉",title:"Международный день татуировки",body:"Если бы на твоей коже могла навсегда остаться всего одна поддерживающая фраза, какой бы она была?\n\nНе обязательно делать татуировку. Просто напиши эту фразу ручкой на руке или в заметках телефона и проживи с ней сегодняшний день.",action:"Маленькое действие: пусть эта фраза станет твоим напоминанием каждый раз, когда захочется снова стать «удобной»."},
+            2:{emoji:"🛸",title:"Всемирный день НЛО",body:"Бывало ли у тебя ощущение, что ты как будто немного не отсюда?\n\nКакие твои взгляды, привычки или желания не совпадают с тем, что принято вокруг? В чём ты «слишком странная» для других?",action:"Маленькое действие: сегодня сделай одну вещь, которая поддерживает именно твою природу, а не ожидания окружающих."},
+            3:{emoji:"🫂",title:"День тайной дружбы",body:"Есть ли часть тебя, которую ты чаще всего прячешь?\n\nМожет быть, злость. Может быть, дерзость. Может быть, желание быть слабой.\n\nКакой своей стороне давно пора сказать: «Я больше не буду делать вид, что тебя нет»?",action:"Маленькое действие: разреши этой части проявиться хотя бы чуть-чуть сегодня."},
+            4:{emoji:"⏳",title:"День капсулы времени",body:"Представь, что сегодня ты отправляешь письмо себе через месяц.\n\nКакой человек откроет его в августе? Что ты хочешь успеть разрешить себе за этот месяц?",action:"Маленькое действие: запиши одно главное внутреннее разрешение и не перечитывай его до конца июля."},
+            5:{emoji:"🧦",title:"День разноцветных носков",body:"В чём сегодня ты можешь позволить себе быть немного нелепой?\n\nНе идеальной. Не правильной. Не серьёзной.",action:"Маленькое действие: сделай что-нибудь чуть более странное, чем обычно. Если никто не удивился, значит, можно было ещё смелее."},
+            6:{emoji:"💋",title:"Всемирный день поцелуев",body:"Обними себя.\n\nПоцелуй своё плечо, ладонь или отражение в зеркале.\n\nЧто ты почувствовала в этот момент?\n\nНеловкость? Тепло? Сопротивление?",action:"Маленькое действие: останься с этим чувством одну минуту. Не убегай."},
+            7:{emoji:"🚶‍♀️",title:"День прогулки посреди дня",body:"Останься сегодня немного наедине с собой.\n\nБез музыки. Без телефона. Без чужих голосов.\n\nКакие мысли приходят, когда рядом никого нет?",action:"Маленькое действие: хотя бы десять минут побудь только с собой."},
+            8:{emoji:"💖",title:"День семьи, любви и верности",body:"Насколько сейчас ты верна себе по шкале от 1 до 10?\n\nГде ты всё ещё выбираешь быть удобной вместо того, чтобы выбирать себя?",action:"Маленькое действие: сделай один поступок, который станет проявлением любви именно к себе."},
+            9:{emoji:"🦄",title:"День веры в единорогов",body:"Во что ты веришь всем сердцем, но боишься признаться даже себе?\n\nЕсли бы сегодня не существовало слова «невозможно», чего бы ты захотела?",action:"Маленькое действие: сделай первый, пусть даже крошечный, шаг в сторону этой мечты."},
+            10:{emoji:"🎈",title:"День воздушного шара",body:"Что ты продолжаешь нести на себе уже слишком долго?\n\nЧужие ожидания?\nВину?\nОбиду?\nСтрах?\n\nЧто давно пора отпустить?",action:"Маленькое действие: запиши это на листке и разорви его."},
+            11:{emoji:"🍫",title:"Всемирный день шоколада",body:"Что в детстве тебе хотелось получить больше всего?\n\nШоколадку?\nКиндер?\nЛюбимое мороженое?\n\nСегодня можно.",action:"Маленькое действие: порадуй свою внутреннюю девочку без чувства вины."},
+            12:{emoji:"📸",title:"День фотографа",body:"Сделай сегодня фотографию себя.\n\nНе идеальную. Не обработанную. Настоящую.\n\nЧто ты чувствуешь, когда смотришь на себя без фильтров?",action:"Маленькое действие: сохрани эту фотографию как напоминание, что тебе не обязательно быть идеальной."},
+            13:{emoji:"🧩",title:"Международный день головоломки",body:"Какую проблему ты пытаешься решить исключительно головой?\n\nА если тело уже давно знает ответ?",action:"Маленькое действие: закрой глаза на минуту и почувствуй, куда тебя тянет без логики."},
+            14:{emoji:"🕊️",title:"День свободы",body:"Что сейчас сильнее всего мешает тебе быть собой?\n\nКакое правило ты давно выполняешь только потому, что «так надо»?",action:"Маленькое действие: сегодня нарушь одно маленькое правило, которое давно перестало быть твоим."},
+            15:{emoji:"🌌",title:"День смотрения на ночное небо",body:"Когда-нибудь наступит ночь, которую ты увидишь в последний раз.\n\nСтоит ли проживать свою жизнь, стараясь соответствовать чужим ожиданиям?",action:"Маленькое действие: вечером посмотри на небо хотя бы пять минут и вспомни, насколько большая жизнь ждёт тебя впереди."},
+            16:{emoji:"🍽️",title:"День вкусной еды",body:"Если убрать слова «полезно», «правильно» и «надо», чего сегодня по-настоящему хочет твоё тело?",action:"Маленькое действие: выбери хотя бы один приём пищи сердцем, а не правилами."},
+            17:{emoji:"🎁",title:"День подарков",body:"Есть ли подарок, который ты давно мечтаешь сделать себе, но всё откладываешь?",action:"Маленькое действие: купи его. Или начни откладывать именно на него уже сегодня."},
+            18:{emoji:"👂",title:"Всемирный день слушания",body:"Если выключить все внешние голоса...\n\nЧто скажешь себе ты сама?",action:"Маленькое действие: запиши первую честную мысль, которая придёт. Не спорь с ней."},
+            19:{emoji:"🤝",title:"День новых друзей",body:"Представь, что сегодня ты знакомишься с новым человеком.\n\nКакой была бы ты, если бы не пыталась ему понравиться?",action:"Маленькое действие: в одном разговоре покажи себя чуть более настоящей."},
+            20:{emoji:"🍰",title:"Международный день торта",body:"Если бы ты была тортом, какой бы была?\n\nНежной? Яркой? С характером? Многослойной?",action:"Маленькое действие: побалуй себя тем, чего действительно хочется."},
+            21:{emoji:"🍟",title:"День нездоровой пищи",body:"Что тебе давно хотелось позволить себе, но мешал контроль?",action:"Маленькое действие: сегодня ослабь контроль хотя бы в одной мелочи."},
+            22:{emoji:"🔍",title:"День находок",body:"Какую важную правду о себе ты уже давно знаешь, но продолжаешь делать вид, что её нет?",action:"Маленькое действие: честно запиши эту правду одной фразой."},
+            23:{emoji:"🐋",title:"Всемирный день китов и дельфинов",body:"Когда становится тихо, что поднимается из глубины?\n\nКакое желание давно ждёт, чтобы ты его услышала?",action:"Маленькое действие: выдели себе хотя бы пятнадцать минут полной тишины."},
+            24:{emoji:"👩‍🦰",title:"День старых знакомых",body:"Найди свою фотографию пятилетней давности.\n\nПосмотри на неё внимательно.\n\nЧто тебе хочется сказать той себе? И что изменилось с тех пор?",action:"Маленькое действие: поблагодари себя за путь, который уже прошла."},
+            25:{emoji:"💻",title:"День системного администратора",body:"Если удалить все роли...\n\nХорошая девочка. Дочь. Специалист. Спасатель.\n\nКто останется?",action:"Маленькое действие: сегодня хотя бы один час проживи не из роли, а из себя настоящей."},
+            26:{emoji:"❓",title:"День загадок",body:"В чём секрет твоей притягательности?\n\nЧто люди чувствуют рядом с тобой, когда ты ничего не доказываешь?",action:"Маленькое действие: перестань сегодня стараться производить впечатление."},
+            27:{emoji:"🦶",title:"День ходьбы босиком",body:"Почувствуй землю под ногами.\n\nДаже если только дома.\n\nНа что ты можешь опереться внутри себя?",action:"Маленькое действие: походи босиком несколько минут и просто почувствуй своё тело."},
+            28:{emoji:"🌠",title:"День желаний",body:"Какое желание сделает тебя ещё ближе к самой себе?",action:"Маленькое действие: сделай первый шаг к нему сегодня."},
+            29:{emoji:"🐅",title:"Международный день тигра",body:"Где сегодня особенно важно защитить себя?\n\nГде пора перестать соглашаться только ради мира?",action:"Маленькое действие: хотя бы один раз скажи «нет» там, где раньше сказала бы «ладно»."},
+            30:{emoji:"💪",title:"Международный день дружбы",body:"Назови три причины, почему именно ты — самый надёжный человек в своей жизни.",action:"Маленькое действие: сделай для себя что-нибудь так же заботливо, как сделала бы для лучшего друга."},
+            31:{emoji:"🔄",title:"День внутренней перепрошивки",body:"Какая старая программа больше не поедет с тобой в август?\n\nНапример:\n«Я должна заслужить любовь.»\n«Я обязана всем нравиться.»\n«Я всегда должна справляться сама.»",action:"Маленькое действие: напиши одну установку, которую оставляешь в июле, и рядом новую, с которой входишь в август.\n\nПусть это станет твоей первой страницей нового месяца."}
+        };
+
+        const phrases = [
+            "🌞 Сегодня хороший день, чтобы выбрать себя.",
+            "🌿 Не обязательно менять жизнь. Иногда достаточно прожить осознанно один день.",
+            "☀️ Сегодня есть ещё один шанс услышать себя.",
+            "🤍 Не спеши. Ответ уже внутри.",
+            "🌱 Настоящие изменения начинаются с маленьких решений.",
+            "✨ Сегодня можно стать чуть ближе к себе.",
+            "💛 Не ищи правильный ответ. Ищи свой.",
+            "🌸 Один день. Один вопрос. Один шаг к себе."
+        ];
+
+        const donePhrases = [
+            "✨ Сегодня получилось выбрать себя.",
+            "🌱 Ещё один шаг навстречу себе.",
+            "🤍 Сегодня было время для себя.",
+            "🌿 Этот день прожит осознанно.",
+            "☀️ Сегодня получилось услышать себя.",
+            "💛 Сегодня было чуть меньше чужих ожиданий.",
+            "🌸 Сегодня стало чуть больше внутренней свободы.",
+            "✨ Ты продолжаешь возвращаться к себе.",
+            "🌼 Сегодня получилось жить по своим ощущениям.",
+            "☀️ Этот день теперь останется с тобой.",
+            "🌱 Ты продолжаешь свой путь.",
+            "💛 Сегодня получилось не пройти мимо себя.",
+            "✨ Сегодня было чуть больше настоящего тебя."
+        ];
+
+        const today = new Date();
+        const currentDay = today.getDate();
+        const currentMonth = today.getMonth();
+        const currentYear = today.getFullYear();
+        const isJuly2026 = (currentYear === 2026 && currentMonth === 6);
+        const isAfterJuly = (currentYear > 2026) || (currentYear === 2026 && currentMonth > 6);
+
+        let currentOpenDay = null;
+
+        function getDayOfWeek(dayNum) {
+            const d = new Date(2026, 6, dayNum);
+            return (d.getDay() + 6) % 7;
+        }
+
+        function loadDay(dayNum) {
+            return JSON.parse(localStorage.getItem('july-day-' + dayNum) || '{}');
+        }
+
+        function saveDayData(dayNum, data) {
+            localStorage.setItem('july-day-' + dayNum, JSON.stringify(data));
+        }
+
+        function getRandomPhrase(list) {
+            return list[Math.floor(Math.random() * list.length)];
+        }
+
+        function renderGrid() {
+            const grid = document.getElementById('daysGrid');
+            grid.innerHTML = '';
+            const firstDayOfWeek = getDayOfWeek(1);
+            for (let i = 0; i < firstDayOfWeek; i++) {
+                const empty = document.createElement('div');
+                grid.appendChild(empty);
+            }
+            for (let d = 1; d <= 31; d++) {
+                const cell = document.createElement('div');
+                cell.className = 'day-cell';
+                cell.textContent = d;
+                const saved = loadDay(d);
+
+                if (isJuly2026) {
+                    if (d < currentDay && !saved.done) {
+                        cell.classList.add('past');
+                    } else if (d === currentDay && !saved.done) {
+                        cell.classList.add('today');
+                    } else if (d > currentDay && !saved.done) {
+                        cell.classList.add('future');
+                    }
+                }
+
+                if (saved.done) {
+                    cell.classList.add('done');
+                    cell.classList.remove('past', 'future', 'today');
+                    const star = document.createElement('span');
+                    star.className = 'star-mark';
+                    star.textContent = '⭐';
+                    cell.appendChild(star);
+                } else if (cell.classList.contains('future')) {
+                    const lock = document.createElement('span');
+                    lock.className = 'lock';
+                    lock.textContent = '🔒';
+                    cell.appendChild(lock);
+                } else if (cell.classList.contains('past')) {
+                    const lock = document.createElement('span');
+                    lock.className = 'lock';
+                    lock.textContent = '🔒';
+                    cell.appendChild(lock);
+                }
+
+                cell.addEventListener('click', () => openDay(d));
+                grid.appendChild(cell);
+            }
+            updateProgress();
+            updateDailyPhrase();
+            updateFinalMessage();
+        }
+
+        function updateProgress() {
+            let done = 0;
+            for (let d = 1; d <= 31; d++) {
+                if (loadDay(d).done) done++;
+            }
+            const percent = Math.round(done / 31 * 100);
+            document.getElementById('progressFill').style.width = percent + '%';
+
+            const lived = done;
+            let missed = 0;
+            let left = 0;
+            if (isJuly2026) {
+                missed = Math.max(0, currentDay - 1 - lived);
+                left = Math.max(0, 31 - currentDay + 1);
+            } else if (isAfterJuly) {
+                missed = 31 - lived;
+            }
+            document.getElementById('progressText').innerText =
+                `Прожито: ${lived} • Упущено: ${missed} • Осталось: ${left}`;
+        }
+
+        function updateDailyPhrase() {
+            const el = document.getElementById('dailyPhrase');
+            const savedPhrase = sessionStorage.getItem('july-daily-phrase');
+            if (savedPhrase) {
+                el.textContent = savedPhrase;
+            } else {
+                const phrase = getRandomPhrase(phrases);
+                sessionStorage.setItem('july-daily-phrase', phrase);
+                el.textContent = phrase;
+            }
+        }
+
+        function updateFinalMessage() {
+            const allDone = [];
+            for (let d = 1; d <= 31; d++) {
+                if (loadDay(d).done) allDone.push(d);
+            }
+            const finalEl = document.getElementById('finalMessage');
+            const footerEl = document.getElementById('footerNote');
+            if (isAfterJuly || (isJuly2026 && currentDay > 31)) {
+                finalEl.style.display = 'block';
+                footerEl.style.display = 'none';
+            }
+        }
+
+        function openDay(dayNum) {
+            if (!dayData[dayNum]) return;
+            currentOpenDay = dayNum;
+            const saved = loadDay(dayNum);
+            const isPast = isJuly2026 && dayNum < currentDay && !saved.done;
+            const isFuture = isJuly2026 && dayNum > currentDay && !saved.done;
+            const isLocked = isPast || isFuture;
+
+            const card = document.getElementById('modalCard');
+
+            if (saved.done) {
+                const starPhrase = saved.starPhrase || getRandomPhrase(donePhrases);
+                card.innerHTML = `
+                    <div class="m-emoji">${dayData[dayNum].emoji}</div>
+                    <div class="m-date">${dayNum} июля</div>
+                    <div class="m-title">${dayData[dayNum].title}</div>
+                    <div class="m-body">${dayData[dayNum].body}</div>
+                    <div class="m-action">${dayData[dayNum].action}</div>
+                    <div class="m-action-label">Твой ответ:</div>
+                    <div class="m-body" style="background:#f6fafc;border-radius:12px;padding:12px;">${saved.answer || '—'}</div>
+                    <div class="m-action-label">Твоё действие:</div>
+                    <div class="m-body" style="background:#f6fafc;border-radius:12px;padding:12px;">${saved.action || '—'}</div>
+                    <p style="text-align:center;color:#6fcf97;font-weight:500;margin-top:8px;">${starPhrase}</p>
+                    <button class="m-close" onclick="closeModal()">Закрыть</button>
+                `;
+            } else if (isLocked) {
+                const msg = isPast
+                    ? "Этот день уже закончился.<br><br>Мы не можем изменить вчера.<br>Но сегодняшний день всё ещё ждёт твоего выбора."
+                    : "Этот день ещё не наступил.<br><br>Не забегай вперёд.<br>Сначала проживи сегодняшний.";
+                card.innerHTML = `
+                    <div class="m-locked-message">${msg}</div>
+                    <button class="m-close" onclick="closeModal()">Закрыть</button>
+                `;
+            } else {
+                card.innerHTML = `
+                    <div class="m-emoji">${dayData[dayNum].emoji}</div>
+                    <div class="m-date">${dayNum} июля</div>
+                    <div class="m-title">${dayData[dayNum].title}</div>
+                    <div class="m-body">${dayData[dayNum].body}</div>
+                    <div class="m-action">${dayData[dayNum].action}</div>
+                    <div class="m-action-label">Что приходит тебе в ответ?</div>
+                    <textarea id="answer" placeholder="Напиши честно...">${saved.answer || ''}</textarea>
+                    <div class="m-action-label">Какое действие я выбираю сегодня?</div>
+                    <textarea id="actionInput" placeholder="Маленький шаг...">${saved.action || ''}</textarea>
+                    <label>
+                        <input type="checkbox" id="doneCheckbox" ${saved.done ? 'checked' : ''}> Сделано
+                    </label>
+                    <button class="m-save" onclick="saveDay()">Сохранить</button>
+                    <button class="m-close" onclick="closeModal()">Закрыть</button>
+                `;
+            }
+
+            document.getElementById('modalOverlay').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+            currentOpenDay = null;
+        }
+
+        function saveDay() {
+            if (!currentOpenDay) return;
+            const answerEl = document.getElementById('answer');
+            const actionEl = document.getElementById('actionInput');
+            const doneEl = document.getElementById('doneCheckbox');
+            if (!answerEl || !actionEl || !doneEl) return;
+
+            const starPhrase = doneEl.checked && !loadDay(currentOpenDay).done
+                ? getRandomPhrase(donePhrases)
+                : (loadDay(currentOpenDay).starPhrase || '');
+
+            const data = {
+                answer: answerEl.value,
+                action: actionEl.value,
+                done: doneEl.checked,
+                starPhrase: starPhrase
+            };
+            saveDayData(currentOpenDay, data);
+            renderGrid();
+            closeModal();
+        }
+
+        document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        renderGrid();
+    </script>
 </body>
 </html>
