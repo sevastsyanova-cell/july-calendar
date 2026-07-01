@@ -50,58 +50,8 @@
         .header-card .subtitle {
             font-size: 14px;
             color: #5b7d8e;
-            margin-bottom: 18px;
+            margin-bottom: 0;
             line-height: 1.5;
-        }
-
-        .add-calendar-btn {
-            display: block;
-            width: 100%;
-            background: #2c7da0;
-            color: white;
-            text-decoration: none;
-            padding: 16px 18px;
-            border-radius: 16px;
-            font-size: 16px;
-            font-weight: 500;
-            transition: background 0.2s ease;
-            margin-bottom: 6px;
-        }
-
-        .add-calendar-btn:active {
-            background: #1e5f7a;
-        }
-
-        .add-calendar-hint {
-            font-size: 12px;
-            color: #8aa6b2;
-            margin-bottom: 16px;
-        }
-
-        /* Инструкция */
-        .instructions {
-            text-align: left;
-            background: #f6fafc;
-            border-radius: 16px;
-            padding: 16px 18px;
-            font-size: 13px;
-            color: #3d5a66;
-            line-height: 1.6;
-        }
-
-        .instructions summary {
-            font-weight: 600;
-            cursor: pointer;
-            margin-bottom: 8px;
-            color: #1e3b4c;
-        }
-
-        .instructions ol {
-            padding-left: 18px;
-        }
-
-        .instructions ol li {
-            margin-bottom: 6px;
         }
 
         /* Текст о календаре */
@@ -189,7 +139,7 @@
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             gap: 8px;
-            margin-bottom: 20px;
+            margin-bottom: 14px;
         }
 
         .day-cell {
@@ -247,19 +197,81 @@
             opacity: 0.6;
         }
 
-        .day-cell .check-mark {
-            position: absolute;
-            top: 5px;
-            right: 6px;
-            font-size: 11px;
-            font-weight: 700;
-        }
-
         .day-cell .star-mark {
             position: absolute;
             top: 5px;
             right: 6px;
             font-size: 11px;
+        }
+
+        /* Подпись */
+        .signature {
+            text-align: center;
+            font-size: 13px;
+            color: #5b7d8e;
+            line-height: 1.6;
+            margin-bottom: 18px;
+            padding: 0 4px;
+        }
+
+        /* Добавить в iPhone — внизу */
+        .bottom-action {
+            background: white;
+            border-radius: 24px;
+            padding: 22px 22px 20px;
+            text-align: center;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+            margin-bottom: 16px;
+        }
+
+        .add-calendar-btn {
+            display: block;
+            width: 100%;
+            background: #2c7da0;
+            color: white;
+            text-decoration: none;
+            padding: 16px 18px;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background 0.2s ease;
+            margin-bottom: 6px;
+        }
+
+        .add-calendar-btn:active {
+            background: #1e5f7a;
+        }
+
+        .add-calendar-hint {
+            font-size: 12px;
+            color: #8aa6b2;
+            margin-bottom: 14px;
+        }
+
+        /* Инструкция */
+        .instructions {
+            text-align: left;
+            background: #f6fafc;
+            border-radius: 16px;
+            padding: 16px 18px;
+            font-size: 13px;
+            color: #3d5a66;
+            line-height: 1.6;
+        }
+
+        .instructions summary {
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 8px;
+            color: #1e3b4c;
+        }
+
+        .instructions ol {
+            padding-left: 18px;
+        }
+
+        .instructions ol li {
+            margin-bottom: 6px;
         }
 
         /* Модальное окно */
@@ -349,6 +361,14 @@
             padding: 10px 0;
         }
 
+        .modal-card .m-star-phrase {
+            text-align: center;
+            color: #6fcf97;
+            font-weight: 500;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
         .modal-card textarea {
             width: 100%;
             min-height: 80px;
@@ -429,13 +449,35 @@
             margin-bottom: 10px;
         }
 
-        /* Футер */
         .footer-note {
             text-align: center;
             font-size: 13px;
             color: #8aa6b2;
             line-height: 1.6;
-            margin-top: 12px;
+            margin-top: 8px;
+        }
+
+        /* Контакт */
+        .contact-block {
+            background: white;
+            border-radius: 18px;
+            padding: 18px 20px;
+            text-align: center;
+            font-size: 13px;
+            color: #3d5a66;
+            line-height: 1.7;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+            margin-top: 14px;
+        }
+
+        .contact-block a {
+            color: #2c7da0;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .contact-block a:active {
+            color: #1e5f7a;
         }
     </style>
 </head>
@@ -445,30 +487,15 @@
         <div class="header-card">
             <div class="emoji-top">☀️</div>
             <h1>Как стать чуть больше собой<br>за 31 день июля</h1>
-            <p class="subtitle">Июль всё равно пройдёт. Вопрос только в том, сколько в этом месяце будет настоящего тебя.</p>
-            <a class="add-calendar-btn" href="webcal://raw.githubusercontent.com/sevastsyanova-cell/july-calendar/main/july-calendar.ics">
-                ✦ Добавить календарь в iPhone
-            </a>
-            <p class="add-calendar-hint">Нажмите «Подписаться», затем «Добавить»</p>
-
-            <details class="instructions">
-                <summary>📲 Как установить и пользоваться</summary>
-                <ol>
-                    <li>Нажмите на кнопку выше</li>
-                    <li>Откроется окно «Подписаться на календарь»</li>
-                    <li>Нажмите «Подписаться»</li>
-                    <li>Календарь появится в приложении 📅 Календарь</li>
-                    <li>Каждый день открывайте календарь, читайте вопрос и делайте одно маленькое действие</li>
-                </ol>
-            </details>
+            <p class="subtitle">Июль всё равно пройдёт. Вопрос в том, насколько насыщенно проживёшь этот месяц именно ТЫ?</p>
         </div>
 
         <!-- О календаре -->
         <div class="about-text">
-            <p>Лето проходит независимо от того, замечаем мы его или нет.</p>
-            <p>Но каждый день — это возможность остановиться на несколько минут и спросить себя:<br>«А чего сейчас хочу именно я?»</p>
-            <p>Этот календарь не про продуктивность.<br>Не про идеальные привычки.<br>Не про то, чтобы стать лучшей версией себя.</p>
-            <p>Он про другое.<br>Каждый день июля связан с настоящим праздником.<br>Тебя ждут один вопрос.<br>Одно небольшое действие.<br>И ещё один маленький шаг навстречу себе.</p>
+            <p>Не обязательно менять жизнь сразу на 360 градусов.</p>
+            <p>Достаточно проживать чуть более осознанно ещё один день.</p>
+            <p>Этот календарь не про продуктивность. Не про идеальные привычки. Не про то, чтобы стать лучшей версией себя.</p>
+            <p>Он про другое. Каждый день июля связан с настоящим праздником. Тебя ждут один вопрос. Одно небольшое действие. И ещё один маленький шаг навстречу себе.</p>
         </div>
 
         <!-- Фраза дня -->
@@ -492,21 +519,54 @@
         <!-- Сетка -->
         <div class="days-grid" id="daysGrid"></div>
 
+        <!-- Подпись -->
+        <p class="signature">
+            Это не курс и не марафон.<br>
+            Просто один вопрос, заданный себе в день,<br>
+            и одно действие, которые помогут тебе<br>
+            ещё больше стать собой.
+        </p>
+
         <!-- Финальное сообщение (скрыто по умолчанию) -->
         <div class="final-message" id="finalMessage" style="display:none;">
             <div class="final-emoji">🌿</div>
             <p>Июль завершён.</p>
             <p>Если ты сейчас читаешь эти строки, значит, этот месяц был прожит внимательнее, чем многие предыдущие.</p>
-            <p>Не потому что всё получилось идеально.<br>А потому что ты снова и снова возвращался к себе.</p>
-            <p>Иногда через один вопрос.<br>Иногда через маленькое действие.<br>Иногда через честный ответ.</p>
+            <p>Не потому что всё получилось идеально. А потому что ты снова и снова возвращался к себе.</p>
+            <p>Иногда через один вопрос. Иногда через маленькое действие. Иногда через честный ответ.</p>
             <p>Именно так постепенно появляется жизнь, в которой становится всё больше настоящего тебя.</p>
             <p>Спасибо, что прожил этот июль вместе с собой.</p>
             <p>🤍</p>
         </div>
 
+        <!-- Кнопка и инструкция внизу -->
+        <div class="bottom-action" id="bottomAction">
+            <a class="add-calendar-btn" href="webcal://raw.githubusercontent.com/sevastsyanova-cell/july-calendar/main/july-calendar.ics">
+                ✦ Добавить календарь в iPhone
+            </a>
+            <p class="add-calendar-hint">Нажмите «Подписаться», затем «Добавить»</p>
+
+            <details class="instructions">
+                <summary>📲 Как установить и пользоваться</summary>
+                <ol>
+                    <li>Нажмите на кнопку выше</li>
+                    <li>Откроется окно «Подписаться на календарь»</li>
+                    <li>Нажмите «Подписаться»</li>
+                    <li>Календарь появится в приложении 📅 Календарь</li>
+                    <li>Каждый день открывайте календарь, читайте вопрос и делайте одно маленькое действие</li>
+                </ol>
+            </details>
+        </div>
+
+        <!-- Контакт -->
+        <div class="contact-block">
+            <p>Этот проект бесплатный.</p>
+            <p>Если хотите оставить обратную связь, благодарность или получить календарь на следующий месяц — пишите в Telegram:</p>
+            <p><a href="https://t.me/ginger_coach4you" target="_blank">@ginger_coach4you</a></p>
+        </div>
+
         <p class="footer-note" id="footerNote">
-            🌿 Это не курс. Не задания.<br>
-            Просто один вопрос в день,<br>который возвращает тебя к себе.
+            Каждый день можно становиться чуть больше собой.<br>И сегодня — тоже. 🤍
         </p>
     </div>
 
@@ -603,6 +663,11 @@
             return list[Math.floor(Math.random() * list.length)];
         }
 
+        function getDailyPhraseKey() {
+            const d = new Date();
+            return 'july-daily-phrase-' + d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate();
+        }
+
         function renderGrid() {
             const grid = document.getElementById('daysGrid');
             grid.innerHTML = '';
@@ -677,26 +742,23 @@
 
         function updateDailyPhrase() {
             const el = document.getElementById('dailyPhrase');
-            const savedPhrase = sessionStorage.getItem('july-daily-phrase');
-            if (savedPhrase) {
-                el.textContent = savedPhrase;
-            } else {
-                const phrase = getRandomPhrase(phrases);
-                sessionStorage.setItem('july-daily-phrase', phrase);
-                el.textContent = phrase;
+            const key = getDailyPhraseKey();
+            let phrase = localStorage.getItem(key);
+            if (!phrase) {
+                phrase = getRandomPhrase(phrases);
+                localStorage.setItem(key, phrase);
             }
+            el.textContent = phrase;
         }
 
         function updateFinalMessage() {
-            const allDone = [];
-            for (let d = 1; d <= 31; d++) {
-                if (loadDay(d).done) allDone.push(d);
-            }
             const finalEl = document.getElementById('finalMessage');
             const footerEl = document.getElementById('footerNote');
+            const bottomEl = document.getElementById('bottomAction');
             if (isAfterJuly || (isJuly2026 && currentDay > 31)) {
                 finalEl.style.display = 'block';
                 footerEl.style.display = 'none';
+                bottomEl.style.display = 'none';
             }
         }
 
@@ -722,7 +784,7 @@
                     <div class="m-body" style="background:#f6fafc;border-radius:12px;padding:12px;">${saved.answer || '—'}</div>
                     <div class="m-action-label">Твоё действие:</div>
                     <div class="m-body" style="background:#f6fafc;border-radius:12px;padding:12px;">${saved.action || '—'}</div>
-                    <p style="text-align:center;color:#6fcf97;font-weight:500;margin-top:8px;">${starPhrase}</p>
+                    <p class="m-star-phrase">${starPhrase}</p>
                     <button class="m-close" onclick="closeModal()">Закрыть</button>
                 `;
             } else if (isLocked) {
