@@ -72,10 +72,16 @@
             margin-bottom: 0;
         }
 
+        .about-cta {
+            font-style: italic;
+            color: #6f9eaf;
+            margin-top: 2px;
+        }
+
         .prev-month-block {
             background: white;
             border-radius: 18px;
-            padding: 16px 18px;
+            padding: 18px 20px;
             margin-bottom: 12px;
             box-shadow: 0 4px 14px rgba(0,0,0,0.03);
         }
@@ -84,13 +90,21 @@
             font-size: 13px;
             font-weight: 600;
             color: #1e3b4c;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
+        }
+
+        .prev-month-block .pm-hint {
+            font-size: 12px;
+            color: #8aa6b2;
+            margin-bottom: 10px;
+            font-style: italic;
+            line-height: 1.5;
         }
 
         .prev-month-list {
             list-style: none;
             padding: 0;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .prev-month-list li {
@@ -111,24 +125,33 @@
             font-style: italic;
         }
 
+        .prev-month-bridge {
+            font-size: 12px;
+            color: #6f9eaf;
+            font-style: italic;
+            margin-top: 6px;
+            display: none;
+        }
+
         .add-prev-event-btn {
             display: inline-block;
-            background: none;
-            border: 1px dashed #c4d6de;
-            color: #7a9baa;
-            padding: 6px 12px;
+            background: #f6fafc;
+            border: 1px solid #c4d6de;
+            color: #5b7d8e;
+            padding: 8px 14px;
             border-radius: 10px;
             font-size: 12px;
             cursor: pointer;
+            font-weight: 500;
         }
 
         .add-prev-event-btn:active {
-            background: #f6fafc;
+            background: #e8f0f4;
         }
 
         .prev-event-form {
             display: none;
-            margin-top: 8px;
+            margin-top: 10px;
         }
 
         .prev-event-form.active {
@@ -220,6 +243,13 @@
             font-size: 13px;
             color: #5b7d8e;
             font-weight: 500;
+        }
+
+        .progress-support {
+            font-size: 12px;
+            color: #6f9eaf;
+            font-style: italic;
+            margin-top: 2px;
         }
 
         .day-names {
@@ -344,7 +374,15 @@
             font-size: 13px;
             font-weight: 600;
             color: #1e3b4c;
+            margin-bottom: 4px;
+        }
+
+        .events-section .events-hint {
+            font-size: 12px;
+            color: #8aa6b2;
             margin-bottom: 10px;
+            font-style: italic;
+            line-height: 1.5;
         }
 
         .events-list {
@@ -371,20 +409,28 @@
             font-style: italic;
         }
 
+        .events-first-added {
+            font-size: 12px;
+            color: #6f9eaf;
+            font-style: italic;
+            margin-top: 4px;
+            display: none;
+        }
+
         .add-event-btn {
             display: inline-block;
-            background: none;
-            border: 1px dashed #a0c4d4;
+            background: #f6fafc;
+            border: 1px solid #a0c4d4;
             color: #5b7d8e;
             padding: 8px 14px;
             border-radius: 12px;
             font-size: 13px;
             cursor: pointer;
-            transition: background 0.2s;
+            font-weight: 500;
         }
 
         .add-event-btn:active {
-            background: #f0f6f9;
+            background: #e8f0f4;
         }
 
         .add-event-form {
@@ -444,6 +490,14 @@
             box-shadow: 0 12px 30px rgba(0,0,0,0.06);
             margin-bottom: 16px;
             border: 2px solid #b8dae8;
+        }
+
+        .bottom-action-cta {
+            font-size: 13px;
+            color: #3d5a66;
+            margin-bottom: 10px;
+            font-style: italic;
+            line-height: 1.5;
         }
 
         .bottom-action-label {
@@ -787,12 +841,15 @@
             <p>Достаточно проживать чуть более осознанно ещё один день.</p>
             <p>Этот календарь не про продуктивность. Не про идеальные привычки. Не про то, чтобы стать лучшей версией себя.</p>
             <p>Он про другое. Каждый день июля связан с настоящим праздником. Тебя ждут один вопрос. Одно небольшое действие. И ещё один маленький шаг навстречу себе.</p>
+            <p class="about-cta">Попробуй прямо сегодня. Открой ячейку и просто прочитай вопрос. Этого уже достаточно.</p>
         </div>
 
         <div class="prev-month-block" id="prevMonthBlock">
             <div class="pm-title">📆 До июля</div>
+            <div class="pm-hint">Оглянись на июнь. Что бы ты хотела запомнить? Даже пара слов создают историю.</div>
             <ul class="prev-month-list" id="prevMonthList"></ul>
-            <button class="add-prev-event-btn" onclick="togglePrevEventForm()">+ добавить</button>
+            <div class="prev-month-bridge" id="prevMonthBridge">Вот с чем ты вошла в июль. Теперь посмотрим, что будет дальше.</div>
+            <button class="add-prev-event-btn" onclick="togglePrevEventForm()">+ добавить событие</button>
             <div class="prev-event-form" id="prevEventForm">
                 <input type="number" class="pe-date" id="peDate" placeholder="День" min="1" max="31">
                 <input type="text" class="pe-emoji" id="peEmoji" placeholder="🌟" maxlength="4">
@@ -808,6 +865,7 @@
                 <div class="progress-fill" id="progressFill"></div>
             </div>
             <div class="progress-text" id="progressText"></div>
+            <div class="progress-support" id="progressSupport"></div>
         </div>
 
         <div class="day-names">
@@ -829,7 +887,9 @@
 
         <div class="events-section" id="eventsSection">
             <div class="events-title">✨ События июля</div>
+            <div class="events-hint">То, что случилось в этом месяце и хочется запомнить</div>
             <ul class="events-list" id="eventsList"></ul>
+            <div class="events-first-added" id="eventsFirstAdded">Первое событие есть. Теперь этот месяц точно не забудется.</div>
             <button class="add-event-btn" onclick="toggleEventForm()">+ событие</button>
             <div class="add-event-form" id="eventForm">
                 <input type="number" class="ev-date" id="evDate" placeholder="День" min="1" max="31">
@@ -853,7 +913,7 @@
         </div>
 
         <div class="bottom-action" id="bottomAction">
-            <div class="bottom-action-label">📲 Версия для iPhone</div>
+            <p class="bottom-action-cta">Хочешь, чтобы вопрос дня приходил прямо в твой Календарь?</p>
             <a class="add-calendar-btn" href="webcal://raw.githubusercontent.com/sevastsyanova-cell/july-calendar/main/july-calendar.ics">
                 ✦ Добавить календарь в iPhone
             </a>
@@ -872,8 +932,8 @@
 
         <div class="contact-block">
             <p>Этот проект бесплатный.</p>
-            <p>Если хотите оставить обратную связь, благодарность или получить календарь на следующий месяц — пишите в Telegram:</p>
-            <p><a href="https://t.me/ginger_coach4you" target="_blank">@ginger_coach4you</a></p>
+            <p>Если захочется сказать спасибо, поделиться мыслями или попросить календарь на август — я здесь:</p>
+            <p><a href="https://t.me/ginger_coach4you" target="_blank">@ginger_coach4you 💌</a></p>
         </div>
 
         <p class="footer-note" id="footerNote">
@@ -1000,12 +1060,15 @@
 
         function renderPrevEvents() {
             const list = document.getElementById('prevMonthList');
+            const bridge = document.getElementById('prevMonthBridge');
             const events = loadPrevEvents();
             if (events.length === 0) {
                 list.innerHTML = '<li class="prev-month-empty">Пока пусто</li>';
+                bridge.style.display = 'none';
             } else {
                 events.sort((a,b) => a.day - b.day);
                 list.innerHTML = events.map(e => `<li>${e.emoji} ${e.day} — ${e.text}</li>`).join('');
+                bridge.style.display = 'block';
             }
         }
 
@@ -1030,12 +1093,15 @@
 
         function renderEventsList() {
             const list = document.getElementById('eventsList');
+            const firstAdded = document.getElementById('eventsFirstAdded');
             const events = loadEvents();
             if (events.length === 0) {
-                list.innerHTML = '<li class="events-empty">Пока нет событий. Добавь первое!</li>';
+                list.innerHTML = '<li class="events-empty">Здесь будут появляться твои моменты июля. Не обязательно каждый день — только то, что правда важно. Добавь первое событие, и лента оживёт.</li>';
+                firstAdded.style.display = 'none';
             } else {
                 events.sort((a,b) => a.day - b.day);
                 list.innerHTML = events.map(e => `<li>${e.day} июля — ${e.emoji} ${e.text}</li>`).join('');
+                firstAdded.style.display = 'block';
             }
         }
 
@@ -1140,6 +1206,17 @@
             }
             document.getElementById('progressText').innerText =
                 `Прожито: ${lived} • Упущено: ${missed} • Осталось: ${left}`;
+
+            const support = document.getElementById('progressSupport');
+            if (done === 0) {
+                support.textContent = 'Пока 0 из 31. Это не страшно — ты только начинаешь.';
+            } else if (done > 15 && done < 31) {
+                support.textContent = 'Больше половины июля прожито осознанно. Ты справляешься.';
+            } else if (done === 31) {
+                support.textContent = 'Весь июль прожит с вниманием к себе. Это впечатляет.';
+            } else {
+                support.textContent = '';
+            }
         }
 
         function updateDailyPhrase() {
