@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Июль — выбери себя</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #e6f4fa;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 28px;
+            padding: 40px 28px 36px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: 600;
+            color: #1e3b4c;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .subtitle {
+            font-size: 15px;
+            color: #5b7d8e;
+            margin-bottom: 28px;
+            line-height: 1.5;
+        }
+
+        .button {
+            display: block;
+            width: 100%;
+            background: #2c7da0;
+            color: white;
+            text-decoration: none;
+            padding: 18px 20px;
+            border-radius: 18px;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 0.2px;
+            transition: background 0.2s ease;
+            margin-bottom: 20px;
+        }
+
+        .button:active {
+            background: #1e5f7a;
+        }
+
+        .hint {
+            font-size: 13px;
+            color: #8aa6b2;
+            line-height: 1.5;
+        }
+
+        .emoji-top {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="emoji-top">🌙</div>
+        <h1>Июль<br>выбери себя</h1>
+        <p class="subtitle">Каждый день — маленькое напоминание,<br>что ты у себя одна</p>
+
+        <a class="button" href="webcal://raw.githubusercontent.com/sevastsyanova-cell/july-calendar/main/july-calendar.ics">
+            ✦ Добавить календарь в iPhone
+        </a>
+
+        <p class="hint">
+            После нажатия появится окно<br>«Подписаться на календарь»<br>Нажмите «Добавить»
+        </p>
+    </div>
+</body>
+</html>
